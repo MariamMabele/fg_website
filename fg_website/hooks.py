@@ -1,7 +1,7 @@
 app_name = "fg_website"
-app_title = "Fg Website"
+app_title = "Frappe Girls Website"
 app_publisher = "mmabele@aakvatech.com"
-app_description = "Mariam Mabele"
+app_description = "Reusable Frappe app for the Frappe Girls website, forms, and event workflows."
 app_email = "mmabele@aakvatech.com"
 app_license = "mit"
 
@@ -70,6 +70,10 @@ app_license = "mit"
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 
+website_context = {
+	"favicon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230F9D88' width='100' height='100' rx='15'/><circle cx='78' cy='24' r='10' fill='%23D9911A'/><text x='50' y='66' font-size='58' fill='white' font-weight='bold' text-anchor='middle'>F</text></svg>",
+}
+
 # Jinja
 # ----------
 
@@ -82,8 +86,8 @@ app_license = "mit"
 # Installation
 # ------------
 
-# before_install = "fg_website.install.before_install"
-# after_install = "fg_website.install.after_install"
+# before_install = "fg_website.setup.builder_sync.before_install"
+after_install = "fg_website.setup.builder_sync.after_install"
 
 # Uninstallation
 # ------------
@@ -171,6 +175,8 @@ app_license = "mit"
 
 # before_tests = "fg_website.install.before_tests"
 
+after_migrate = ["fg_website.setup.builder_sync.after_migrate"]
+
 # Overriding Methods
 # ------------------------------
 #
@@ -246,4 +252,3 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-

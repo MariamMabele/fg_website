@@ -1,0 +1,33 @@
+{
+ "allow_comments": 0,
+ "allow_delete": 0,
+ "allow_edit": 0,
+ "allow_incomplete": 0,
+ "allow_multiple": 1,
+ "allow_print": 0,
+ "apply_document_permissions": 0,
+ "doc_type": "Workshop Application",
+ "doctype": "Web Form",
+ "is_standard": 1,
+ "login_required": 0,
+ "module": "Frappe Girls",
+ "name": "apply-workshop",
+ "published": 1,
+ "route": "apply-workshop",
+ "show_attachments": 0,
+ "show_sidebar": 0,
+ "success_message": "Thank you. Your application has been received.",
+ "success_url": "/events",
+ "title": "Workshop Application",
+ "web_form_fields": [
+  {"fieldname": "workshop_event", "fieldtype": "Link", "label": "Workshop Event", "options": "Workshop Event", "reqd": 1, "allow_read_on_all_link_options": 1},
+  {"fieldname": "full_name", "fieldtype": "Data", "label": "Full Name", "reqd": 1},
+  {"fieldname": "email", "fieldtype": "Data", "label": "Email", "options": "Email", "reqd": 1},
+  {"fieldname": "phone", "fieldtype": "Phone", "label": "Phone"},
+  {"fieldname": "city", "fieldtype": "Data", "label": "City"},
+  {"fieldname": "country", "fieldtype": "Link", "label": "Country", "options": "Country"},
+  {"fieldname": "experience_level", "fieldtype": "Select", "label": "Experience Level", "options": "No Experience Yet\nBeginner\nIntermediate"},
+  {"fieldname": "motivation", "fieldtype": "Small Text", "label": "Motivation", "reqd": 1},
+  {"fieldname": "laptop_access", "fieldtype": "Select", "label": "Laptop Access", "options": "Yes\nNo", "reqd": 1}
+ ]
+}

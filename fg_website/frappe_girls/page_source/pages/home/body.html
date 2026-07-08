@@ -1,0 +1,962 @@
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #fdf8f3; }
+  #fg-home { color: #1a2e27; font-family: "Open Sans", sans-serif; }
+  #fg-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 5000;
+    background: rgba(253, 248, 243, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(29, 158, 117, 0.12);
+  }
+  .fg-shell { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .fg-nav-inner {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .fg-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .fg-brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #1d9e75;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .fg-brand-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a2e27;
+  }
+  .fg-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .fg-nav-links a {
+    color: #1a2e27;
+    text-decoration: none;
+  }
+  .fg-nav-links a:hover { color: #1d9e75; }
+  .fg-cta {
+    display: inline-block;
+    background: #1d9e75;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .fg-cta-amber {
+    display: inline-block;
+    background: #ba7517;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .fg-outline {
+    display: inline-block;
+    background: transparent;
+    color: #ba7517;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 2px solid #ba7517;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  #fg-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #1a2e27;
+    cursor: pointer;
+  }
+  #fg-mobile-menu {
+    display: none;
+    background: #fdf8f3;
+    border-bottom: 1px solid rgba(29, 158, 117, 0.12);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+  }
+  #fg-mobile-menu a {
+    display: block;
+    padding: 14px 24px;
+    color: #1a2e27;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .fg-hero {
+    padding: 56px 0 52px 0;
+  }
+  .fg-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 52px;
+    align-items: center;
+  }
+  .fg-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(186, 117, 23, 0.28);
+    color: #ba7517;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .fg-kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ba7517;
+  }
+  .fg-hero h1 {
+    margin: 0 0 18px 0;
+    color: #1a2e27;
+    font-size: clamp(38px, 5vw, 72px);
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-hero h1 .accent { color: #1d9e75; font-style: italic; }
+  .fg-hero-copy {
+    margin: 0 0 30px 0;
+    color: #6b7b73;
+    font-size: 18px;
+    line-height: 1.85;
+    max-width: 620px;
+  }
+  .fg-hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .fg-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(29, 158, 117, 0.12);
+  }
+  .fg-stat-label {
+    color: #6b7b73;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+  .fg-stat-value {
+    color: #1a2e27;
+    font-size: 22px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-hero-card {
+    position: relative;
+    min-height: 540px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #ede8e1;
+    box-shadow: 0 24px 54px rgba(26,46,39,0.12);
+  }
+  .fg-hero-card::before {
+    content: "";
+    position: absolute;
+    inset: -18px auto auto -18px;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: #e4f4ed;
+    border: 1px solid rgba(29,158,117,0.18);
+    z-index: 0;
+  }
+  .fg-hero-card-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  .fg-hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .fg-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,46,39,0.45), rgba(26,46,39,0.05));
+  }
+  .fg-hero-badge {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255,252,248,0.96);
+    border: 1px solid rgba(29,158,117,0.12);
+    border-radius: 20px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: end;
+  }
+  .fg-section { padding: 80px 0; }
+  .fg-dark {
+    background: #1a2e27;
+    color: #fffcf8;
+  }
+  .fg-soft { background: #f5f0e8; }
+  .fg-title {
+    margin: 0 0 14px 0;
+    font-size: 42px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-subtitle {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 760px;
+  }
+  .fg-dark .fg-subtitle { color: rgba(255,252,248,0.75); }
+  .fg-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 36px;
+  }
+  .fg-panel {
+    background: #fffcf8;
+    border: 1px solid rgba(29, 158, 117, 0.15);
+    border-radius: 26px;
+    padding: 28px;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+  }
+  .fg-dark .fg-panel {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.10);
+    box-shadow: none;
+  }
+  .fg-panel h3 {
+    margin: 0 0 12px 0;
+    font-size: 24px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-panel p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.85;
+    color: #6b7b73;
+  }
+  .fg-dark .fg-panel p { color: rgba(255,252,248,0.75); }
+  .fg-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .fg-feature-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 22px;
+    padding: 20px;
+  }
+  .fg-feature-box strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 20px;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-feature-box span {
+    font-size: 13px;
+    color: rgba(255,252,248,0.70);
+  }
+  .fg-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 42px;
+  }
+  .fg-step {
+    background: #fffcf8;
+    border: 1px solid rgba(29, 158, 117, 0.15);
+    border-radius: 26px;
+    padding: 28px 24px;
+  }
+  .fg-step-num {
+    margin: 0 0 16px 0;
+    color: #1d9e75;
+    font-size: 56px;
+    line-height: 1;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-step h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-step p {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .fg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 42px;
+  }
+  .fg-event-card {
+    background: #fffcf8;
+    border: 1px solid rgba(29, 158, 117, 0.15);
+    border-radius: 26px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+  }
+  .fg-event-media {
+    height: 208px;
+    background: linear-gradient(135deg, #1d9e75 0%, #31b58f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-event-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .fg-chip {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .fg-event-title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-meta {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .fg-copy {
+    margin: 0;
+    color: #51615a;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .fg-link-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 10px;
+  }
+  .fg-empty {
+    margin-top: 40px;
+    background: #fffcf8;
+    border: 1px dashed rgba(29,158,117,0.22);
+    border-radius: 26px;
+    padding: 54px 24px;
+    text-align: center;
+  }
+  .fg-contribute-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .fg-mini-card {
+    background: #fffcf8;
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+  }
+  .fg-mini-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-mini-card p {
+    margin: 0 0 16px 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .fg-banner {
+    margin-top: 44px;
+    background: #e4f4ed;
+    border: 1px solid rgba(29,158,117,0.18);
+    border-radius: 28px;
+    padding: 46px 30px;
+    text-align: center;
+  }
+  .fg-footer {
+    background: #1d9e75;
+    color: #ffffff;
+    padding: 58px 0 34px 0;
+  }
+  .fg-footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 34px;
+  }
+  .fg-footer h4 {
+    margin: 0 0 14px 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    opacity: 0.9;
+  }
+  .fg-footer a {
+    display: block;
+    color: rgba(255,255,255,0.92);
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .fg-footer p {
+    color: rgba(255,255,255,0.88);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .fg-footer-bottom {
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.20);
+    font-size: 13px;
+    color: rgba(255,255,255,0.82);
+  }
+  @media (max-width: 767px) {
+    #fg-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .fg-shell { padding: 0 20px; }
+    .fg-nav-links, .fg-nav-apply { display: none !important; }
+    #fg-hamburger { display: block; }
+    #fg-mobile-menu {
+      position: fixed;
+      top: 84px;
+      left: 0;
+      right: 0;
+      max-height: calc(100vh - 84px);
+      overflow-y: auto;
+      z-index: 4999;
+    }
+    .fg-hero { padding-top: 126px; }
+    .fg-hero-grid,
+    .fg-two-col,
+    .fg-feature-grid,
+    .fg-steps,
+    .fg-grid,
+    .fg-contribute-grid,
+    .fg-footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .fg-hero-card { min-height: 360px; }
+    .fg-hero-badge {
+      flex-direction: column;
+      align-items: start;
+    }
+    .fg-title { font-size: 34px; }
+    .fg-hero-copy,
+    .fg-subtitle { font-size: 16px; }
+  }
+</style>
+
+<div id="fg-home">
+  <nav id="fg-navbar">
+    <div class="fg-shell">
+      <div class="fg-nav-inner">
+        <div class="fg-brand">
+          <div class="fg-brand-mark">F</div>
+          <span class="fg-brand-name">Frappe Girls</span>
+        </div>
+
+        <div class="fg-nav-links">
+          <a href="#about" onclick="fgScroll(event,'about')">About</a>
+          <a href="#how-it-works" onclick="fgScroll(event,'how-it-works')">How It Works</a>
+          <a href="/events" target="_top">Events</a>
+          <a href="/contribute" target="_top">Contribute</a>
+          <a href="/organize" target="_top">Organize</a>
+          <a href="/code-of-conduct" target="_top">Code of Conduct</a>
+        </div>
+
+        <button id="fg-hamburger" onclick="fgToggleMenu()">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="fg-mobile-menu">
+    <a href="#about" onclick="fgMobileScroll(event,'about')">About</a>
+    <a href="#how-it-works" onclick="fgMobileScroll(event,'how-it-works')">How It Works</a>
+    <a href="/events" target="_top">Events</a>
+    <a href="/contribute" target="_top">Contribute</a>
+    <a href="/organize" target="_top">Organize</a>
+    <a href="/code-of-conduct" target="_top">Code of Conduct</a>
+  </div>
+
+  <section class="fg-hero">
+    <div class="fg-shell">
+      <div class="fg-hero-grid">
+        <div>
+          <div class="fg-kicker">
+            <span class="fg-kicker-dot"></span>
+            Free workshops · East Africa · Open source
+          </div>
+
+          <h1>
+            We inspire women to
+            <span class="accent">unlock open-source</span>
+            business technology.
+          </h1>
+
+          <p class="fg-hero-copy">
+            Frappe Girls runs free, one-day workshops where women in business, finance, and operations learn Frappe Framework and ERPNext through practice, coaching, and community. No programming experience required.
+          </p>
+
+          <div class="fg-hero-actions">
+            <a href="/events" target="_top" class="fg-cta">Apply to attend</a>
+            <a href="/organizer-request/new" target="_top" class="fg-outline">Organize an event</a>
+          </div>
+
+          <div class="fg-hero-stats">
+            <div>
+              <div class="fg-stat-value">One day</div>
+              <div class="fg-stat-label">Free workshop</div>
+            </div>
+            <div>
+              <div class="fg-stat-value">20–50</div>
+              <div class="fg-stat-label">Participants</div>
+            </div>
+            <div>
+              <div class="fg-stat-value">Zero</div>
+              <div class="fg-stat-label">Experience needed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-hero-card">
+          <div class="fg-hero-card-inner">
+            <img src="/files/frappe_girls.png" alt="Frappe Girls workshop">
+            <div class="fg-hero-overlay"></div>
+
+            <div class="fg-hero-badge">
+              <div>
+                <div style="font-size:12px;color:#6b7b73;margin-bottom:6px;">Next workshop spotlight</div>
+                <div id="fgHeroEventTitle" style="font-size:24px;font-weight:800;color:#1a2e27;font-family:Georgia, 'Times New Roman', serif;">Upcoming event</div>
+                <div id="fgHeroEventMeta" style="font-size:14px;color:#6b7b73;margin-top:6px;">Applications will appear here</div>
+              </div>
+              <a id="fgHeroEventLink" href="/events" target="_top" class="fg-cta-amber">See events</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="fg-section fg-dark">
+    <div class="fg-shell">
+      <h2 class="fg-title">Business technology is for every woman who runs one.</h2>
+      <p class="fg-subtitle">
+        Frappe Girls is a non-profit community helping women understand, use, and build on open-source business technology, especially Frappe Framework and ERPNext.
+      </p>
+
+      <div class="fg-two-col">
+        <div>
+          <div class="fg-panel">
+            <h3>What is Frappe Girls?</h3>
+            <p>
+              We organize free, one-day workshops where participants set up their first ERPNext environment, explore DocTypes, understand real business workflows, and learn with support from experienced coaches.
+            </p>
+          </div>
+
+          <div class="fg-feature-grid">
+            <div class="fg-feature-box">
+              <strong>East Africa</strong>
+              <span>Launch region</span>
+            </div>
+            <div class="fg-feature-box">
+              <strong>20–50</strong>
+              <span>Seats per event</span>
+            </div>
+            <div class="fg-feature-box">
+              <strong>Free</strong>
+              <span>For participants</span>
+            </div>
+            <div class="fg-feature-box">
+              <strong>Volunteer</strong>
+              <span>Coach-led model</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-panel">
+          <h3>Our Vision</h3>
+          <p>
+            Every woman who runs a business, manages accounts, or works in operations should have access to powerful open-source tools and the confidence to use them. Frappe Girls exists to make that practical, visible, and community-supported.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="fg-section fg-soft">
+    <div class="fg-shell">
+      <h2 class="fg-title" style="text-align:center;">How it works</h2>
+      <p class="fg-subtitle" style="text-align:center;margin:0 auto;">
+        The workshop journey is simple: apply, build, and continue learning through the wider community.
+      </p>
+
+      <div class="fg-steps">
+        <div class="fg-step">
+          <div class="fg-step-num">01</div>
+          <h3>Apply</h3>
+          <p>
+            Participants apply for a free workshop. No prior programming experience is required, only curiosity and a laptop.
+          </p>
+        </div>
+
+        <div class="fg-step">
+          <div class="fg-step-num">02</div>
+          <h3>Build</h3>
+          <p>
+            In one practical workshop day, participants learn the basics of Frappe and ERPNext, create records, and understand live workflows with coach support.
+          </p>
+        </div>
+
+        <div class="fg-step">
+          <div class="fg-step-num">03</div>
+          <h3>Grow</h3>
+          <p>
+            After the workshop, learners continue through future events, contribution paths, community stories, and later the tutorial and coaching resources.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-shell">
+      <h2 class="fg-title">Upcoming workshops</h2>
+
+      <div id="fgUpcomingGrid" class="fg-grid"></div>
+
+      <div id="fgUpcomingEmpty" class="fg-empty" style="display:none;">
+        <h3 style="margin:0 0 12px 0;font-size:28px;font-weight:800;font-family:Georgia, 'Times New Roman', serif;">No upcoming workshops published yet</h3>
+        <p style="margin:0 0 20px 0;color:#6b7b73;font-size:16px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;">
+        </p>
+        <a href="/organizer-request/new" target="_top" class="fg-cta-amber">Organize a workshop</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section fg-soft">
+    <div class="fg-shell">
+      <h2 class="fg-title">Past workshops</h2>
+
+      <div id="fgPastGrid" class="fg-grid"></div>
+
+      <div id="fgPastEmpty" class="fg-empty" style="display:none;">
+        <h3 style="margin:0 0 12px 0;font-size:28px;font-weight:800;font-family:Georgia, 'Times New Roman', serif;">No past workshops yet</h3>
+        <p style="margin:0;color:#6b7b73;font-size:16px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;">
+          Completed workshops will build your public history here and show the growth of the Frappe Girls community over time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-shell">
+      <h2 class="fg-title">More ways to contribute</h2>
+      <p class="fg-subtitle">
+        Organizing is one path. Frappe Girls also grows through coaches, sponsors, website contributors, and translation support.
+      </p>
+
+      <div class="fg-contribute-grid">
+        <div class="fg-mini-card">
+          <h3>Coach</h3>
+          <p>Support participants throughout the day, troubleshoot, encourage, and help first-time learners finish with confidence.</p>
+          <a href="/contribute" target="_top" style="color:#1d9e75;text-decoration:none;font-weight:800;">Become a coach →</a>
+        </div>
+
+        <div class="fg-mini-card">
+          <h3>Sponsor</h3>
+          <p>Help fund venues, connectivity, meals, materials, or grants so workshops can happen in more cities.</p>
+          <a href="/contribute" target="_top" style="color:#1d9e75;text-decoration:none;font-weight:800;">Support a workshop →</a>
+        </div>
+
+        <div class="fg-mini-card">
+          <h3>Website</h3>
+          <p>Improve the public site, event listing, accessibility, or application flow as the platform grows.</p>
+          <a href="/contribute" target="_top" style="color:#1d9e75;text-decoration:none;font-weight:800;">Work on the website →</a>
+        </div>
+
+        <div class="fg-mini-card">
+          <h3>Translate</h3>
+          <p>Help make resources easier to use across regions, starting with languages like Swahili and French.</p>
+          <a href="/contribute" target="_top" style="color:#1d9e75;text-decoration:none;font-weight:800;">Help translate →</a>
+        </div>
+      </div>
+
+      <div class="fg-banner">
+        <h2 style="margin:0 0 14px 0;font-size:40px;line-height:1.14;font-weight:800;color:#1d9e75;font-family:Georgia, 'Times New Roman', serif;">
+          Want to bring Frappe Girls to your city?
+        </h2>
+        <p style="margin:0 auto 24px auto;max-width:720px;color:#6b7b73;font-size:17px;line-height:1.8;">
+          If you have a venue, a coach network, or a community ready to host, the organizer path starts with one request and grows from there.
+        </p>
+        <a href="/organizer-request/new" target="_top" class="fg-cta-amber">Start organizing</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fg-footer">
+    <div class="fg-shell">
+      <div class="fg-footer-grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:40px;height:40px;background:rgba(255,255,255,0.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;">F</div>
+            <span style="font-size:16px;font-weight:800;">Frappe Girls</span>
+          </div>
+          <p>We inspire women to unlock the power of open-source business technology.</p>
+        </div>
+
+        <div>
+          <h4>Main Site</h4>
+          <a href="/" target="_top">Home</a>
+          <a href="/events" target="_top">Events</a>
+          <a href="/contribute" target="_top">Contribute</a>
+          <a href="/organize" target="_top">Organize</a>
+        </div>
+
+        <div>
+          <h4>More</h4>
+          <a href="/code-of-conduct" target="_top">Code of Conduct</a>
+          <a href="/newsletter" target="_top">Newsletter</a>
+          <a href="/stories" target="_top">Stories</a>
+          <a href="/jobs" target="_top">Jobs</a>
+        </div>
+
+        <div>
+          <h4>Later</h4>
+          <a href="#" onclick="return false;">tutorial.frappegirls.org</a>
+          <a href="#" onclick="return false;">organize.frappegirls.org</a>
+          <a href="#" onclick="return false;">coach.frappegirls.org</a>
+        </div>
+      </div>
+
+      <div class="fg-footer-bottom">
+        © 2026 Frappe Girls Foundation. Built for community-led open-source business technology learning.
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var pageData = window.page_data || {};
+  var upcomingEvents = pageData.upcoming_events || [];
+  var pastEvents = pageData.past_events || [];
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function statusColor(status) {
+    if (status === "Open") return "#1d9e75";
+    if (status === "Full") return "#ba7517";
+    if (status === "Closed") return "#6b7b73";
+    if (status === "Completed") return "#4c7a68";
+    return "#1d9e75";
+  }
+
+  function renderEventCard(eventItem, isPast) {
+    var title = eventItem.title || [eventItem.city, eventItem.country].filter(Boolean).join(", ") || "Workshop Event";
+    var date = eventItem.display_date || eventItem.start_date || "";
+    var location = [eventItem.city, eventItem.country].filter(Boolean).join(", ");
+    var description = eventItem.short_description || "Frappe Girls community workshop.";
+    var course = eventItem.learning_course || "Frappe Framework and ERPNext";
+    var status = isPast ? "Completed" : (eventItem.status || "Open");
+    var image = eventItem.cover_image || "";
+    var seatCount = Number(eventItem.seat_count || 0);
+    var seatsTaken = Number(eventItem.seats_taken || 0);
+    var seatsLeft = Math.max(0, seatCount - seatsTaken);
+    var fillPercent = seatCount > 0 ? Math.min(100, Math.round((seatsTaken / seatCount) * 100)) : 0;
+    var applyUrl = "/apply-workshop/new?workshop_event=" + encodeURIComponent(eventItem.name);
+
+    var media = image
+      ? '<div class="fg-event-media" style="padding:0;"><img src="' + escapeHtml(image) + '" alt="' + escapeHtml(title) + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>'
+      : '<div class="fg-event-media">FG</div>';
+
+    return '' +
+      '<div class="fg-event-card">' +
+        media +
+        '<div class="fg-event-body">' +
+          '<div style="display:flex;justify-content:space-between;gap:12px;align-items:start;">' +
+            '<h3 class="fg-event-title">' + escapeHtml(title) + '</h3>' +
+            '<span class="fg-chip" style="background:' + statusColor(status) + ';">' + escapeHtml(status) + '</span>' +
+          '</div>' +
+          '<p class="fg-meta">📅 ' + escapeHtml(date) + '</p>' +
+          '<p class="fg-meta">' + (location ? '📍 ' + escapeHtml(location) : 'Global community event') + '</p>' +
+          '<p class="fg-meta">📘 ' + escapeHtml(course) + '</p>' +
+          '<p class="fg-copy">' + escapeHtml(description) + '</p>' +
+          (
+            isPast
+              ? '<div class="fg-link-row"><a href="/events" target="_top" class="fg-outline">See all events</a></div>'
+              : '<div style="margin-top:auto;padding-top:8px;">' +
+                  '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+                    '<span style="color:#6b7b73;font-size:12px;font-weight:700;">Seats</span>' +
+                    '<span style="color:#1d9e75;font-size:12px;font-weight:800;">' + seatsLeft + ' left of ' + seatCount + '</span>' +
+                  '</div>' +
+                  '<div style="height:10px;background:#ede8e1;border-radius:999px;overflow:hidden;margin-bottom:18px;">' +
+                    '<div style="height:100%;width:' + fillPercent + '%;background:#1d9e75;"></div>' +
+                  '</div>' +
+                  '<div class="fg-link-row">' +
+                    '<a href="' + applyUrl + '" target="_top" class="fg-cta" style="flex:1;text-align:center;">Apply to attend</a>' +
+                  '</div>' +
+                '</div>'
+          ) +
+        '</div>' +
+      '</div>';
+  }
+
+  function renderGrid(gridId, emptyId, items, isPast) {
+    var grid = document.getElementById(gridId);
+    var empty = document.getElementById(emptyId);
+    if (!grid || !empty) return;
+
+    grid.innerHTML = "";
+    if (!items.length) {
+      empty.style.display = "block";
+      return;
+    }
+    empty.style.display = "none";
+
+    items.forEach(function (item) {
+      grid.insertAdjacentHTML("beforeend", renderEventCard(item, isPast));
+    });
+  }
+
+  function renderHeroEvent() {
+    var title = document.getElementById("fgHeroEventTitle");
+    var meta = document.getElementById("fgHeroEventMeta");
+    var link = document.getElementById("fgHeroEventLink");
+
+    if (!title || !meta || !link) return;
+
+    if (!upcomingEvents.length) {
+      title.textContent = "Upcoming workshops";
+      meta.textContent = "Applications will appear here as events are published";
+      link.setAttribute("href", "/events");
+      link.textContent = "See events";
+      return;
+    }
+
+    var eventItem = upcomingEvents[0];
+    var eventTitle = eventItem.title || [eventItem.city, eventItem.country].filter(Boolean).join(", ") || "Workshop Event";
+    var eventMeta = [eventItem.display_date || eventItem.start_date || "", [eventItem.city, eventItem.country].filter(Boolean).join(", ")].filter(Boolean).join(" • ");
+    title.textContent = eventTitle;
+    meta.textContent = eventMeta || "Upcoming workshop";
+    link.setAttribute("href", "/apply-workshop/new?workshop_event=" + encodeURIComponent(eventItem.name));
+    link.textContent = "Apply now";
+  }
+
+  window.fgToggleMenu = function () {
+    var menu = document.getElementById("fg-mobile-menu");
+    if (!menu) return;
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  };
+
+  window.fgScroll = function (event, id) {
+    event.preventDefault();
+    var target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  window.fgMobileScroll = function (event, id) {
+    var menu = document.getElementById("fg-mobile-menu");
+    if (menu) menu.style.display = "none";
+    window.fgScroll(event, id);
+  };
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 767) {
+      var menu = document.getElementById("fg-mobile-menu");
+      if (menu) menu.style.display = "none";
+    }
+  });
+
+  renderHeroEvent();
+  renderGrid("fgUpcomingGrid", "fgUpcomingEmpty", upcomingEvents, false);
+  renderGrid("fgPastGrid", "fgPastEmpty", pastEvents, true);
+})();
+</script>

@@ -1,0 +1,350 @@
+<style>
+  body { margin: 0; background: #fdf8f3; }
+  .fg-page-shell { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .fg-page-section { padding: 64px 0 84px 0; }
+  .fg-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(186,117,23,0.28);
+    color: #ba7517;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .fg-kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ba7517;
+  }
+  .fg-title {
+    margin: 0 0 14px 0;
+    color: #1a2e27;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-title em { color: #1d9e75; font-style: italic; }
+  .fg-copy {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 760px;
+  }
+  .fg-cta {
+    display: inline-block;
+    background: #1d9e75;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .fg-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 38px;
+  }
+  .fg-card {
+    background: #fffcf8;
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: 26px;
+    padding: 28px;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+  }
+  .fg-card h3 {
+    margin: 0 0 10px 0;
+    color: #1a2e27;
+    font-size: 26px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-card p {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .fg-sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+  }
+  .fg-sponsor-card {
+    background: #fffcf8;
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: 26px;
+    padding: 26px;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  .fg-sponsor-logo {
+    width: 100%;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4ece0;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .fg-sponsor-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .fg-sponsor-name {
+    margin: 0 0 8px 0;
+    color: #1a2e27;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-chip {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #1d9e75;
+    margin-bottom: 14px;
+  }
+  .fg-meta {
+    margin: 0 0 10px 0;
+    color: #6b7b73;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .fg-desc {
+    margin: 0 0 14px 0;
+    color: #51615a;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .fg-link {
+    margin-top: auto;
+    color: #1d9e75;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .fg-empty {
+    margin-top: 34px;
+    background: #fffcf8;
+    border: 1px dashed rgba(29,158,117,0.22);
+    border-radius: 26px;
+    padding: 54px 24px;
+    text-align: center;
+  }
+  .fg-block {
+    margin-top: 72px;
+  }
+  .fg-cta-wrap {
+    margin-top: 56px;
+    background: #e4f4ed;
+    border: 1px solid rgba(29,158,117,0.18);
+    border-radius: 28px;
+    padding: 46px 30px;
+    text-align: center;
+  }
+  .fg-cta-wrap h2 {
+    margin: 0 0 14px 0;
+    font-size: 38px;
+    line-height: 1.14;
+    font-weight: 800;
+    color: #1d9e75;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-cta-wrap p {
+    margin: 0 auto 24px auto;
+    max-width: 720px;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  @media (max-width: 767px) {
+    .fg-page-shell { padding: 0 20px; }
+    .fg-grid-3,
+    .fg-sponsor-grid { grid-template-columns: 1fr; }
+    .fg-page-section { padding: 44px 0 66px 0; }
+    .fg-title,
+    .fg-cta-wrap h2 { font-size: 30px; }
+  }
+</style>
+
+<section class="fg-page-section">
+  <div class="fg-page-shell">
+    <div class="fg-kicker">
+      <span class="fg-kicker-dot"></span>
+      Sponsors · Support · Growth
+    </div>
+
+    <h1 class="fg-title">
+      Support the growth of <em>Frappe Girls</em>.
+    </h1>
+
+    <p class="fg-copy">
+      Sponsorship helps workshops happen, supports community growth, and makes it easier to reach more women through practical, welcoming learning spaces.
+    </p>
+
+    <div class="fg-grid-3">
+      <div class="fg-card">
+        <h3>Global support</h3>
+        <p>
+          Some sponsors support Frappe Girls as a whole by helping sustain the movement, grow the platform, and fund expansion into more cities.
+        </p>
+      </div>
+
+      <div class="fg-card">
+        <h3>Event support</h3>
+        <p>
+          Some sponsors support individual events by providing venues, refreshments, logistics, internet, materials, or direct local funding.
+        </p>
+      </div>
+
+      <div class="fg-card">
+        <h3>Flexible support</h3>
+        <p>
+          Sponsorship can be financial, in-kind, operational, or a mix of all three. What matters most is making workshops easier to run well.
+        </p>
+      </div>
+    </div>
+
+    <div class="fg-block">
+      <h2 class="fg-title" style="font-size:40px;">Global sponsors</h2>
+      <p class="fg-copy">
+        These sponsors support the wider mission and help strengthen the long-term growth of the community.
+      </p>
+
+      <div id="fgGlobalSponsors" class="fg-sponsor-grid"></div>
+
+      <div id="fgGlobalSponsorsEmpty" class="fg-empty" style="display:none;">
+        <h3 style="margin:0 0 12px 0;font-size:28px;font-weight:800;color:#1a2e27;font-family:Georgia, 'Times New Roman', serif;">No global sponsors published yet</h3>
+        <p style="margin:0;color:#6b7b73;font-size:16px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;">
+          Approved sponsor profiles with `published` checked and global support will appear here automatically.
+        </p>
+      </div>
+    </div>
+
+    <div class="fg-block">
+      <h2 class="fg-title" style="font-size:40px;">Event sponsors</h2>
+      <p class="fg-copy">
+        These sponsors are connected to specific workshops and show how local support helps bring events to life.
+      </p>
+
+      <div id="fgEventSponsors" class="fg-sponsor-grid"></div>
+
+      <div id="fgEventSponsorsEmpty" class="fg-empty" style="display:none;">
+        <h3 style="margin:0 0 12px 0;font-size:28px;font-weight:800;color:#1a2e27;font-family:Georgia, 'Times New Roman', serif;">No event sponsors published yet</h3>
+        <p style="margin:0;color:#6b7b73;font-size:16px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;">
+          Published event sponsorship records will appear here automatically once they are linked to sponsor profiles and events.
+        </p>
+      </div>
+    </div>
+
+    <div class="fg-cta-wrap">
+      <h2>Interested in sponsoring?</h2>
+      <p>
+        If you want to support Frappe Girls globally or help fund a specific event, send a sponsorship interest and the team can follow up with the next steps.
+      </p>
+      <a href="/sponsor-interest/new" target="_top" class="fg-cta">Become a sponsor</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var pageData = window.page_data || {};
+  var globalSponsors = pageData.global_sponsors || [];
+  var eventSponsors = pageData.event_sponsors || [];
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function sponsorLogoHtml(logo, name) {
+    if (logo) {
+      return '<div class="fg-sponsor-logo"><img src="' + escapeHtml(logo) + '" alt="' + escapeHtml(name) + '"></div>';
+    }
+    return '<div class="fg-sponsor-logo" style="color:#1d9e75;font-size:24px;font-weight:800;font-family:Georgia, \'Times New Roman\', serif;">' + escapeHtml(name || "Sponsor") + '</div>';
+  }
+
+  function renderGlobalCard(item) {
+    var location = [item.city, item.country].filter(Boolean).join(", ");
+    var desc = item.short_description || "Supporting the growth of Frappe Girls.";
+    var website = item.website || "#";
+    var linkTarget = item.website ? ' target="_top"' : "";
+    return '' +
+      '<div class="fg-sponsor-card">' +
+        sponsorLogoHtml(item.logo, item.organization_name) +
+        '<div class="fg-chip">' + escapeHtml(item.default_tier || "Sponsor") + '</div>' +
+        '<h3 class="fg-sponsor-name">' + escapeHtml(item.organization_name) + '</h3>' +
+        (location ? '<p class="fg-meta">📍 ' + escapeHtml(location) + '</p>' : '') +
+        (item.sponsor_level ? '<p class="fg-meta">Support: ' + escapeHtml(item.sponsor_level) + '</p>' : '') +
+        '<p class="fg-desc">' + escapeHtml(desc) + '</p>' +
+        (item.featured_quote ? '<p class="fg-meta">"' + escapeHtml(item.featured_quote) + '"</p>' : '') +
+        '<a href="' + escapeHtml(website) + '"' + linkTarget + ' class="fg-link">' + (item.website ? 'Visit website →' : 'Sponsor profile') + '</a>' +
+      '</div>';
+  }
+
+  function renderEventCard(item) {
+    var location = [item.event_city, item.event_country].filter(Boolean).join(", ");
+    var website = item.website || "#";
+    var linkTarget = item.website ? ' target="_top"' : "";
+    return '' +
+      '<div class="fg-sponsor-card">' +
+        sponsorLogoHtml(item.logo, item.sponsor_name) +
+        '<div class="fg-chip">' + escapeHtml(item.tier || "Sponsor") + '</div>' +
+        '<h3 class="fg-sponsor-name">' + escapeHtml(item.sponsor_name) + '</h3>' +
+        '<p class="fg-meta">Workshop: ' + escapeHtml(item.event_title || "") + '</p>' +
+        (location ? '<p class="fg-meta">📍 ' + escapeHtml(location) + '</p>' : '') +
+        (item.support_type ? '<p class="fg-meta">Support: ' + escapeHtml(item.support_type) + '</p>' : '') +
+        (item.amount_or_value ? '<p class="fg-meta">Value: ' + escapeHtml(item.amount_or_value) + '</p>' : '') +
+        (item.notes ? '<p class="fg-desc">' + escapeHtml(item.notes) + '</p>' : '') +
+        (item.website ? '<a href="' + escapeHtml(website) + '"' + linkTarget + ' class="fg-link">Visit website →</a>' : '') +
+      '</div>';
+  }
+
+  function renderList(gridId, emptyId, items, renderer) {
+    var grid = document.getElementById(gridId);
+    var empty = document.getElementById(emptyId);
+    if (!grid || !empty) return;
+
+    grid.innerHTML = "";
+    if (!items.length) {
+      empty.style.display = "block";
+      return;
+    }
+    empty.style.display = "none";
+
+    items.forEach(function (item) {
+      grid.insertAdjacentHTML("beforeend", renderer(item));
+    });
+  }
+
+  renderList("fgGlobalSponsors", "fgGlobalSponsorsEmpty", globalSponsors, renderGlobalCard);
+  renderList("fgEventSponsors", "fgEventSponsorsEmpty", eventSponsors, renderEventCard);
+})();
+</script>

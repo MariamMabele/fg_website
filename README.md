@@ -1,14 +1,14 @@
 # Fg Website
 
-Frappe app for the Frappe Girls website backend and content structure.
+`fg_website` is the Frappe app for the Frappe Girls website backend.
 
-This app is currently being used as the source-of-truth repo for:
+It keeps the parts that should be versioned in code:
 
-- Frappe Builder page bodies
-- Frappe Builder data scripts
-- Web Form field definitions
-- DocType field definitions
-- website content notes and public copy
+- Frappe Girls DocTypes
+- Web Forms
+- Builder page source files
+- Builder page sync logic
+- website routes and page content
 
 ## Installation
 
@@ -20,50 +20,33 @@ bench get-app $URL_OF_THIS_REPO --branch develop
 bench install-app fg_website
 ```
 
-## Builder export structure
+## App structure
 
-The main working files for the current site live in `builder_exports/`.
+The app follows a Builder-first structure:
 
 ```text
-builder_exports/
-  pages/
-    home/
-      body.html
-      data_script.py
-    events/
-      body.html
-      data_script.py
-    contribute/
-      body.html
-    organize/
-      body.html
-    coach/
-      body.html
-    sponsors/
-      body.html
-    code_of_conduct/
-      body.html
-  webforms/
-    workshop_application.md
-    organizer_request.md
-    coach_interest.md
-    sponsor_interest.md
-  doctypes/
-    workshop_event.md
-    workshop_application.md
-    organizer_request.md
-    coach_interest.md
-    sponsor_interest.md
-    sponsor_profile.md
-    event_sponsorship.md
+fg_website/
+  hooks.py
+  modules.txt
+  setup/
+    builder_sync.py
+  frappe_girls/
+    doctype/
+    web_form/
+    page_source/
+      pages/
 ```
 
-## Current workflow
+## Builder workflow
 
-1. Build and test in Frappe Builder / Web Forms on Frappe Cloud.
-2. Copy the live page body and data script into this repo.
-3. Keep DocType and Web Form definitions updated here.
-4. Push changes to GitHub so the website structure is versioned.
+The live website is edited in Frappe Builder, but this app keeps the page source copy used to seed Builder.
+
+1. Build and test pages in Frappe Builder and Web Forms.
+2. Copy the latest page HTML, head snippet, and data script into `fg_website/frappe_girls/page_source/pages/`.
+3. Keep DocTypes and Web Forms in the app updated through normal Frappe export files.
+4. Install or migrate the app to sync app-owned Builder pages into the site.
+
+`fg_website.setup.builder_sync` creates and updates Builder Page records from the files in `fg_website/frappe_girls/page_source/pages/`.
 
 ## Contributing
 

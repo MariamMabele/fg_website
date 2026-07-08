@@ -1,0 +1,150 @@
+<style>
+  body { margin: 0; background: #fdf8f3; }
+  .fg-page-shell { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .fg-page-section { padding: 64px 0 84px 0; }
+  .fg-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(186,117,23,0.28);
+    color: #ba7517;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .fg-kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ba7517;
+  }
+  .fg-title {
+    margin: 0 0 14px 0;
+    color: #1a2e27;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-title em { color: #1d9e75; font-style: italic; }
+  .fg-copy {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 760px;
+  }
+  .fg-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 42px;
+  }
+  .fg-card {
+    background: #fffcf8;
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: 26px;
+    padding: 28px;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+  }
+  .fg-card h3 {
+    margin: 0 0 12px 0;
+    color: #1a2e27;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-card p {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .fg-cta-wrap {
+    margin-top: 52px;
+    background: #e4f4ed;
+    border: 1px solid rgba(29,158,117,0.18);
+    border-radius: 28px;
+    padding: 46px 30px;
+    text-align: center;
+  }
+  .fg-cta-wrap h2 {
+    margin: 0 0 14px 0;
+    font-size: 38px;
+    line-height: 1.14;
+    font-weight: 800;
+    color: #1d9e75;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-cta-wrap p {
+    margin: 0 auto 24px auto;
+    max-width: 720px;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  .fg-cta {
+    display: inline-block;
+    background: #1d9e75;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  @media (max-width: 767px) {
+    .fg-page-shell { padding: 0 20px; }
+    .fg-grid-2 { grid-template-columns: 1fr; }
+    .fg-page-section { padding: 44px 0 66px 0; }
+    .fg-title,
+    .fg-cta-wrap h2 { font-size: 30px; }
+  }
+</style>
+
+<section class="fg-page-section">
+  <div class="fg-page-shell">
+    <div class="fg-kicker">
+      <span class="fg-kicker-dot"></span>
+      Coach · Support · Community
+    </div>
+
+    <h1 class="fg-title">
+      Help learners move forward as a <em>coach</em>.
+    </h1>
+
+    <p class="fg-copy">
+      Coaches are at the heart of every Frappe Girls event. They support participants during the workshop, help solve problems, answer questions, and make the day feel welcoming and practical.
+    </p>
+
+    <div class="fg-grid-2">
+      <div class="fg-card">
+        <h3>What coaches do</h3>
+        <p>
+          Coaches guide small groups, help with setup and troubleshooting, explain concepts in a calm way, and encourage participants when they feel stuck.
+        </p>
+      </div>
+
+      <div class="fg-card">
+        <h3>Who can coach</h3>
+        <p>
+          Coaches can be Frappe developers, ERPNext consultants, experienced ERPNext users, accountants, operators, or professionals who understand the workflows well enough to support learners.
+        </p>
+      </div>
+    </div>
+
+    <div class="fg-cta-wrap">
+      <h2>Ready to volunteer as a coach?</h2>
+      <p>
+        If you want to support workshops and help new learners feel confident with Frappe and ERPNext, submit your coaching interest form.
+      </p>
+      <a href="/coach-interest/new" target="_top" class="fg-cta">Apply as a coach</a>
+    </div>
+  </div>
+</section>

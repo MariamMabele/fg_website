@@ -1,0 +1,300 @@
+<style>
+  body { margin: 0; background: #fdf8f3; }
+  .fg-contribute-shell { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .fg-contribute-section { padding: 64px 0 84px 0; }
+  .fg-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(186,117,23,0.28);
+    color: #ba7517;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .fg-kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ba7517;
+  }
+  .fg-title {
+    margin: 0 0 14px 0;
+    color: #1a2e27;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-title em {
+    color: #1d9e75;
+    font-style: italic;
+  }
+  .fg-copy {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 760px;
+  }
+  .fg-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 42px;
+    align-items: start;
+    margin-bottom: 44px;
+  }
+  .fg-hero-card {
+    background: linear-gradient(135deg, #e4f4ed 0%, #f4ece0 100%);
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 18px 44px rgba(26,46,39,0.08);
+  }
+  .fg-hero-card h3 {
+    margin: 0 0 12px 0;
+    color: #1a2e27;
+    font-size: 28px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-hero-card p {
+    margin: 0 0 20px 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .fg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+  }
+  .fg-card {
+    background: #fffcf8;
+    border: 1px solid rgba(29,158,117,0.15);
+    border-radius: 26px;
+    padding: 28px;
+    box-shadow: 0 14px 36px rgba(26,46,39,0.06);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  .fg-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+    background: #e4f4ed;
+    color: #1d9e75;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+  .fg-card h3 {
+    margin: 0 0 12px 0;
+    color: #1a2e27;
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-card p {
+    margin: 0 0 18px 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .fg-card a {
+    margin-top: auto;
+    color: #1d9e75;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .fg-card a:hover {
+    color: #157c5e;
+  }
+  .fg-band {
+    margin-top: 64px;
+    background: #1a2e27;
+    color: #fffcf8;
+    border-radius: 30px;
+    padding: 44px 34px;
+  }
+  .fg-band h2 {
+    margin: 0 0 14px 0;
+    font-size: 38px;
+    line-height: 1.12;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-band p {
+    margin: 0;
+    color: rgba(255,252,248,0.76);
+    font-size: 16px;
+    line-height: 1.85;
+    max-width: 820px;
+  }
+  .fg-bottom-cta {
+    margin-top: 52px;
+    background: #e4f4ed;
+    border: 1px solid rgba(29,158,117,0.18);
+    border-radius: 28px;
+    padding: 46px 30px;
+    text-align: center;
+  }
+  .fg-bottom-cta h2 {
+    margin: 0 0 14px 0;
+    font-size: 38px;
+    line-height: 1.14;
+    font-weight: 800;
+    color: #1d9e75;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .fg-bottom-cta p {
+    margin: 0 auto 24px auto;
+    max-width: 720px;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  .fg-cta {
+    display: inline-block;
+    background: #1d9e75;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .fg-cta-amber {
+    display: inline-block;
+    background: #ba7517;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  @media (max-width: 767px) {
+    .fg-contribute-shell { padding: 0 20px; }
+    .fg-hero-grid,
+    .fg-grid { grid-template-columns: 1fr; }
+    .fg-contribute-section { padding: 44px 0 66px 0; }
+    .fg-title,
+    .fg-band h2,
+    .fg-bottom-cta h2 { font-size: 30px; }
+  }
+</style>
+
+<section class="fg-contribute-section">
+  <div class="fg-contribute-shell">
+    <div class="fg-hero-grid">
+      <div>
+        <div class="fg-kicker">
+          <span class="fg-kicker-dot"></span>
+          Contribute · Community · Open source
+        </div>
+
+        <h1 class="fg-title">
+          Help <em>grow</em> Frappe Girls
+          in more than one way.
+        </h1>
+
+        <p class="fg-copy">
+          Frappe Girls grows through organizers, coaches, sponsors, translators, contributors, and community storytellers. Whether you want to host, teach, build, support, or share, there is a place for you here.
+        </p>
+      </div>
+
+      <div class="fg-hero-card">
+        <h3>Choose the path that fits you</h3>
+        <p>
+          Some people want to host events, some want to coach learners, some want to support financially, and others want to improve the website or tutorial. Each path supports the same mission.
+        </p>
+        <a href="/organize" target="_top" class="fg-cta-amber">Start with organize</a>
+      </div>
+    </div>
+
+    <div class="fg-grid">
+      <div class="fg-card">
+        <div class="fg-icon">📅</div>
+        <h3>Organise an Event</h3>
+        <p>
+          Bring Frappe Girls to your city. Start with the organizer page to understand what is needed before opening the application form.
+        </p>
+        <a href="/organize" target="_top">Go to organize →</a>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-icon">👩🏽‍🏫</div>
+        <h3>Coach</h3>
+        <p>
+          Support participants during workshops, help with setup, answer questions, and make the day feel more welcoming and less intimidating.
+        </p>
+        <a href="/coach" target="_top">See coaching guide →</a>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-icon">📘</div>
+        <h3>Work on the Tutorial</h3>
+        <p>
+          Help improve the tutorial by clarifying steps, fixing errors, adding screenshots, and keeping the learning experience clear for beginners.
+        </p>
+        <a href="https://github.com/frappegirls/tutorial" target="_top">Open tutorial repo →</a>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-icon">💻</div>
+        <h3>Work on the Website</h3>
+        <p>
+          Help improve the public site, events experience, accessibility, content structure, and application flow as the platform grows.
+        </p>
+        <a href="https://github.com/frappegirls/frappegirls" target="_top">Open website repo →</a>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-icon">🌍</div>
+        <h3>Translate the Tutorial</h3>
+        <p>
+          Help make the learning journey more accessible across regions by supporting future translation work and language coordination.
+        </p>
+        <a href="mailto:hello@frappegirls.org?subject=Frappe%20Girls%20Translation%20Interest" target="_top">Help translate →</a>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-icon">💛</div>
+        <h3>Support Financially</h3>
+        <p>
+          Sponsorship and donations help cover venues, refreshments, materials, grants, and the tools needed to support more events in more cities.
+        </p>
+        <a href="/sponsors" target="_top">See sponsorship options →</a>
+      </div>
+    </div>
+
+    <div class="fg-band">
+      <h2>Support can be technical or practical</h2>
+      <p>
+        Frappe Girls needs technical contributors, event organizers, experienced coaches, local advocates, and funding support. The movement becomes stronger when different people contribute in different ways.
+      </p>
+    </div>
+
+    <div class="fg-bottom-cta">
+      <h2>Don’t see your path yet?</h2>
+      <p>
+        Reach out if you want to help as a mentor, venue host, reviewer, media partner, volunteer, or collaborator. There are many ways to support the mission.
+      </p>
+      <a href="mailto:hello@frappegirls.org?subject=Frappe%20Girls%20Get%20In%20Touch" target="_top" class="fg-cta">Get in touch</a>
+    </div>
+  </div>
+</section>
