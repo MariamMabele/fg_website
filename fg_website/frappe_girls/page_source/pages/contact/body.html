@@ -1,0 +1,249 @@
+<style>
+  body {
+    margin: 0;
+    background: #fdf8f3;
+  }
+
+  .fg-contact-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 64px 24px 88px;
+  }
+
+  .fg-contact-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .fg-contact-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 1px solid rgba(186, 117, 23, 0.28);
+    border-radius: 999px;
+    color: #ba7517;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .fg-contact-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px;
+    border: 1px solid rgba(186, 117, 23, 0.28);
+    border-radius: 999px;
+    color: #ba7517;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .fg-contact-kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ba7517;
+  }
+
+  .fg-contact-hero {
+    margin-top: 22px;
+    margin-bottom: 36px;
+  }
+
+  .fg-contact-title {
+    margin: 0 0 14px;
+    color: #1a2e27;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .fg-contact-title em {
+    color: #1d9e75;
+    font-style: italic;
+  }
+
+  .fg-contact-copy {
+    margin: 0;
+    max-width: 760px;
+    color: #6b7b73;
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  .fg-contact-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 34px;
+    align-items: start;
+    margin-top: 42px;
+  }
+
+  .fg-contact-card,
+  .fg-contact-form-card {
+    background: #fffdf9;
+    border: 1px solid rgba(29, 158, 117, 0.14);
+    border-radius: 28px;
+    box-shadow: 0 18px 44px rgba(26, 46, 39, 0.07);
+  }
+
+  .fg-contact-card {
+    padding: 30px 28px;
+  }
+
+  .fg-contact-card h2,
+  .fg-contact-form-card h2 {
+    margin: 0 0 16px;
+    color: #1a2e27;
+    font-size: 30px;
+    line-height: 1.12;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .fg-faq-item {
+    padding: 18px 0;
+    border-top: 1px solid rgba(26, 46, 39, 0.10);
+  }
+
+  .fg-faq-item:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .fg-faq-q {
+    margin: 0 0 8px;
+    color: #1d9e75;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .fg-faq-a {
+    margin: 0;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .fg-contact-form-card {
+    padding: 28px;
+  }
+
+  .fg-contact-form-card p {
+    margin: 0 0 18px;
+    color: #6b7b73;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .fg-contact-form-wrap {
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(26, 46, 39, 0.08);
+    background: #ffffff;
+  }
+
+  .fg-contact-form-wrap iframe {
+    width: 100%;
+    min-height: 980px;
+    border: 0;
+    display: block;
+    background: #ffffff;
+  }
+
+  @media (max-width: 900px) {
+    .fg-contact-page {
+      padding: 46px 20px 72px;
+    }
+
+    .fg-contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .fg-contact-title,
+    .fg-contact-card h2,
+    .fg-contact-form-card h2 {
+      font-size: 30px;
+    }
+
+    .fg-contact-form-wrap iframe {
+      min-height: 1080px;
+    }
+  }
+</style>
+
+<section class="fg-contact-page">
+  <div class="fg-contact-topbar">
+    <a href="/home" target="_top" class="fg-contact-home">← Home</a>
+
+    <div class="fg-contact-kicker">
+      <span class="fg-contact-kicker-dot"></span>
+      Contact · Help · Support
+    </div>
+  </div>
+
+  <div class="fg-contact-hero">
+    <h1 class="fg-contact-title">
+      We would love to <em>hear</em> from you.
+    </h1>
+    <p class="fg-contact-copy">
+      If you need help, want to reach Frappe Girls HQ, contact local organizers, or ask a general question, start here. Check the quick answers first, then send your message below.
+    </p>
+  </div>
+
+  <div class="fg-contact-grid">
+    <div class="fg-contact-card">
+      <h2>Before you send a message</h2>
+
+      <div class="fg-faq-item">
+        <p class="fg-faq-q">How do I apply for a workshop?</p>
+        <p class="fg-faq-a">
+          Go to the Events page and use the workshop application form for the event you want to attend.
+        </p>
+      </div>
+
+      <div class="fg-faq-item">
+        <p class="fg-faq-q">I want to organize an event.</p>
+        <p class="fg-faq-a">
+          Start from the Organize page. It explains the process and gives you the organizer request form.
+        </p>
+      </div>
+
+      <div class="fg-faq-item">
+        <p class="fg-faq-q">I want to coach or sponsor.</p>
+        <p class="fg-faq-a">
+          You can still contact us here, but the Coach and Sponsors pages already provide the best path for those requests.
+        </p>
+      </div>
+
+      <div class="fg-faq-item">
+        <p class="fg-faq-q">Who should I choose in the form?</p>
+        <p class="fg-faq-a">
+          Choose HQ for platform-wide questions, Local Organizer for event-specific help, and General if you are not sure where your message belongs.
+        </p>
+      </div>
+    </div>
+
+    <div class="fg-contact-form-card">
+      <h2>Send your message</h2>
+      <p>
+        Fill in your name, email, contact target, and message. Once submitted, your request will be emailed to the Frappe Girls team.
+      </p>
+
+      <div class="fg-contact-form-wrap">
+        <iframe src="/contact-us/new" title="Frappe Girls Contact Form"></iframe>
+      </div>
+    </div>
+  </div>
+</section>

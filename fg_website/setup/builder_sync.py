@@ -13,6 +13,7 @@ PAGE_DEFINITIONS = [
 	{"key": "organize", "title": "Organize", "route": "organize"},
 	{"key": "coach", "title": "Coach", "route": "coach"},
 	{"key": "sponsors", "title": "Sponsors", "route": "sponsors"},
+	{"key": "contact", "title": "Contact", "route": "contact"},
 	{"key": "code_of_conduct", "title": "Code of Conduct", "route": "code-of-conduct"},
 ]
 
